@@ -38,7 +38,7 @@ async function getGlobal(lang: string): Promise<any> {
 
 export async function generateMetadata({ params } : { params: {lang: string}}): Promise<Metadata> {
   const meta = await getGlobal(params.lang);
-
+  console.log('meta : ', meta)
   if (!meta.data) return FALLBACK_SEO;
 
   const { metadata, favicon } = meta.data.attributes;
@@ -83,7 +83,7 @@ export default async function RootLayout({
           logoText={navbar.navbarLogo.logoText}
         />
 
-        <main className="dark:bg-black dark:text-gray-100 min-h-screen">
+        <main className="min-h-screen dark:bg-black dark:text-gray-100">
           {children}
         </main>
 
