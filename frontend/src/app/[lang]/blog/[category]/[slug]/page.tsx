@@ -1,4 +1,4 @@
-import { fetchAPI } from '@/app/[lang]/utils/fetch-api';
+import { fetchAPI } from '@/lib/fetch-api';
 import Post from '@/app/[lang]/views/post';
 import type { Metadata } from 'next';
 

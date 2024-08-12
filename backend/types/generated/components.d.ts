@@ -168,9 +168,9 @@ export interface LayoutNavbar extends Schema.Component {
     description: '';
   };
   attributes: {
-    links: Attribute.Component<'links.link', true>;
     button: Attribute.Component<'links.button-link'>;
     navbarLogo: Attribute.Component<'layout.logo'>;
+    links: Attribute.Component<'links.menu-link', true>;
   };
 }
 
@@ -216,6 +216,22 @@ export interface LinksLink extends Schema.Component {
     url: Attribute.String & Attribute.Required;
     newTab: Attribute.Boolean & Attribute.DefaultTo<false>;
     text: Attribute.String & Attribute.Required;
+    description: Attribute.Text;
+  };
+}
+
+export interface LinksMenuLink extends Schema.Component {
+  collectionName: 'components_links_menu_links';
+  info: {
+    displayName: 'Menu Link';
+    description: '';
+  };
+  attributes: {
+    url: Attribute.String;
+    newTab: Attribute.Boolean & Attribute.DefaultTo<false>;
+    text: Attribute.String;
+    media: Attribute.Media;
+    subLinks: Attribute.Component<'links.link', true>;
   };
 }
 
@@ -379,7 +395,14 @@ export interface SectionsRichText extends Schema.Component {
     icon: 'text-height';
   };
   attributes: {
-    content: Attribute.RichText;
+    content: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor.CKEditor',
+        {
+          output: 'HTML';
+          preset: 'rich';
+        }
+      >;
   };
 }
 
@@ -432,7 +455,14 @@ export interface SharedRichText extends Schema.Component {
     description: '';
   };
   attributes: {
-    body: Attribute.RichText;
+    body: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor.CKEditor',
+        {
+          output: 'HTML';
+          preset: 'rich';
+        }
+      >;
   };
 }
 
@@ -491,6 +521,7 @@ declare module '@strapi/types' {
       'links.button-link': LinksButtonLink;
       'links.button': LinksButton;
       'links.link': LinksLink;
+      'links.menu-link': LinksMenuLink;
       'links.social-link': LinksSocialLink;
       'meta.metadata': MetaMetadata;
       'sections.bottom-actions': SectionsBottomActions;

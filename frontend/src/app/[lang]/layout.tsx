@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { getStrapiMedia, getStrapiURL } from "./utils/api-helpers";
-import { fetchAPI } from "./utils/fetch-api";
+import { getStrapiMedia, getStrapiURL } from "@/lib/api-helpers";
+import { fetchAPI } from "@/lib/fetch-api";
 
 import { i18n } from "../../../i18n-config";
-import Banner from "./components/Banner";
-import Footer from "./components/Footer";
-import Navbar from "./components/Navbar";
-import {FALLBACK_SEO} from "@/app/[lang]/utils/constants";
+import Banner from "../../components/custom/Banner";
+import Footer from "../../components/custom/Footer";
+import Navbar from "../../components/header/Navbar";
+import {FALLBACK_SEO} from "@/lib/constants";
 
 
 async function getGlobal(lang: string): Promise<any> {
@@ -24,6 +24,7 @@ async function getGlobal(lang: string): Promise<any> {
       "favicon",
       "notificationBanner.link",
       "navbar.links",
+      "navbar.links.subLinks",
       "navbar.navbarLogo.logoImg",
       "footer.footerLogo.logoImg",
       "footer.menuLinks",
@@ -38,7 +39,7 @@ async function getGlobal(lang: string): Promise<any> {
 
 export async function generateMetadata({ params } : { params: {lang: string}}): Promise<Metadata> {
   const meta = await getGlobal(params.lang);
-  console.log('meta : ', meta)
+  // console.log('meta : ', meta)
   if (!meta.data) return FALLBACK_SEO;
 
   const { metadata, favicon } = meta.data.attributes;

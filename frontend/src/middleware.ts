@@ -16,7 +16,7 @@ function getLocale(request: NextRequest): string | undefined {
     console.log('languages : ', languages)
     // @ts-ignore locales are readonly
     const locales: string[] = i18n.locales;
-    return matchLocale(languages, locales, i18n.defaultLocale);
+    return matchLocale(languages, locales, i18n.defaultLocale);  
 }
 
 export function middleware(request: NextRequest) {
@@ -40,6 +40,8 @@ export function middleware(request: NextRequest) {
 
     // Redirect if there is no locale
     if (pathnameIsMissingLocale) {
+
+        console.log('pathnameIsMissingLocale : ', pathnameIsMissingLocale)
         const locale = getLocale(request);
 
         // e.g. incoming request is /products

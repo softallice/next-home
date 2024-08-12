@@ -1,7 +1,7 @@
-import {sectionRenderer} from "@/app/[lang]/utils/section-renderer";
+import {sectionRenderer} from "@/lib/section-renderer";
 import {Metadata} from "next";
-import {getPageBySlug} from "@/app/[lang]/utils/get-page-by-slug";
-import {FALLBACK_SEO} from "@/app/[lang]/utils/constants";
+import {getPageBySlug} from "@/lib/get-page-by-slug";
+import {FALLBACK_SEO} from "@/lib/constants";
 
 
 type Props = {
