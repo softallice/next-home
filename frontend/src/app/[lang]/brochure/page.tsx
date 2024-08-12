@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback } from "react";
 import { fetchAPI } from "@/lib/fetch-api";
 
 import Loader from "@/components/custom/Loader";
-import Blog from "../views/blog/blog-list";
+import Blog from "../views/brochure/brochure-list";
 import PageHeader from "@/components/custom/PageHeader";
 
 interface Meta {
@@ -23,15 +23,12 @@ export default function Profile() {
     setLoading(true);
     try {
       const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-      const path = `/articles`;
+      const path = `/brochures`;
       const urlParamsObject = {
         sort: { createdAt: "desc" },
         populate: {
           cover: { fields: ["url"] },
           category: { populate: "*" },
-          authorsBio: {
-            populate: "*",
-          },
         },
         pagination: {
           start: start,

@@ -1,10 +1,10 @@
 import { fetchAPI } from '@/lib/fetch-api';
-import Post from '@/app/[lang]/views/blog/post';
+import Post from '@/app/[lang]/views/brochure/post';
 import type { Metadata } from 'next';
 
 async function getPostBySlug(slug: string) {
     const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-    const path = `/articles`;
+    const path = `/brochures`;
     const urlParamsObject = {
         filters: { slug },
         populate: {
@@ -31,7 +31,7 @@ async function getPostBySlug(slug: string) {
 
 async function getMetaData(slug: string) {
     const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-    const path = `/articles`;
+    const path = `/brochures`;
     const urlParamsObject = {
         filters: { slug },
         populate: { seo: { populate: '*' } },
@@ -60,9 +60,9 @@ export default async function PostRoute({ params }: { params: { slug: string } }
 
 export async function generateStaticParams() {
     const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-    const path = `/articles`;
+    const path = `/brochures`;
     const options = { headers: { Authorization: `Bearer ${token}` } };
-    const articleResponse = await fetchAPI(
+    const brochureResponse = await fetchAPI(
         path,
         {
             populate: ['category'],
@@ -70,14 +70,14 @@ export async function generateStaticParams() {
         options
     );
 
-    return articleResponse.data.map(
-        (article: {
+    return brochureResponse.data.map(
+        (brochure: {
             attributes: {
                 slug: string;
                 category: {
                     slug: string;
                 };
             };
-        }) => ({ slug: article.attributes.slug, category: article.attributes.slug })
+        }) => ({ slug: brochure.attributes.slug, category: brochure.attributes.slug })
     );
 }
