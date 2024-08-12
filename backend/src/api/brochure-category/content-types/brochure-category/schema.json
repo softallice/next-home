@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "brochure_categories",
+  "info": {
+    "singularName": "brochure-category",
+    "pluralName": "brochure-categories",
+    "displayName": "Brochure Category"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "brochures": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::brochure.brochure",
+      "mappedBy": "category"
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

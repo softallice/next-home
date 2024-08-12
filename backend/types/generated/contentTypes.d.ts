@@ -840,6 +840,11 @@ export interface ApiAnnouncementAnnouncement extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    cagegory: Attribute.Relation<
+      'api::announcement.announcement',
+      'manyToOne',
+      'api::announcement-cagegory.announcement-cagegory'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -861,6 +866,46 @@ export interface ApiAnnouncementAnnouncement extends Schema.CollectionType {
       'api::announcement.announcement'
     >;
     locale: Attribute.String;
+  };
+}
+
+export interface ApiAnnouncementCagegoryAnnouncementCagegory
+  extends Schema.CollectionType {
+  collectionName: 'announcement_cagegories';
+  info: {
+    singularName: 'announcement-cagegory';
+    pluralName: 'announcement-cagegories';
+    displayName: 'Announcement Cagegory';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.String;
+    slug: Attribute.UID<
+      'api::announcement-cagegory.announcement-cagegory',
+      'name'
+    >;
+    announcements: Attribute.Relation<
+      'api::announcement-cagegory.announcement-cagegory',
+      'oneToMany',
+      'api::announcement.announcement'
+    >;
+    description: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::announcement-cagegory.announcement-cagegory',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::announcement-cagegory.announcement-cagegory',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
   };
 }
 
@@ -1054,6 +1099,11 @@ export interface ApiBrochureBrochure extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    category: Attribute.Relation<
+      'api::brochure.brochure',
+      'manyToOne',
+      'api::brochure-category.brochure-category'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1075,6 +1125,43 @@ export interface ApiBrochureBrochure extends Schema.CollectionType {
       'api::brochure.brochure'
     >;
     locale: Attribute.String;
+  };
+}
+
+export interface ApiBrochureCategoryBrochureCategory
+  extends Schema.CollectionType {
+  collectionName: 'brochure_categories';
+  info: {
+    singularName: 'brochure-category';
+    pluralName: 'brochure-categories';
+    displayName: 'Brochure Category';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.String;
+    slug: Attribute.UID<'api::brochure-category.brochure-category', 'name'>;
+    brochures: Attribute.Relation<
+      'api::brochure-category.brochure-category',
+      'oneToMany',
+      'api::brochure.brochure'
+    >;
+    description: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::brochure-category.brochure-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::brochure-category.brochure-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
   };
 }
 
@@ -1167,6 +1254,11 @@ export interface ApiDisclosureDisclosure extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    category: Attribute.Relation<
+      'api::disclosure.disclosure',
+      'manyToOne',
+      'api::disclosure-category.disclosure-category'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1188,6 +1280,43 @@ export interface ApiDisclosureDisclosure extends Schema.CollectionType {
       'api::disclosure.disclosure'
     >;
     locale: Attribute.String;
+  };
+}
+
+export interface ApiDisclosureCategoryDisclosureCategory
+  extends Schema.CollectionType {
+  collectionName: 'disclosure_categories';
+  info: {
+    singularName: 'disclosure-category';
+    pluralName: 'disclosure-categories';
+    displayName: 'Disclosure Category';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.String;
+    slug: Attribute.UID<'api::disclosure-category.disclosure-category', 'name'>;
+    disclosures: Attribute.Relation<
+      'api::disclosure-category.disclosure-category',
+      'oneToMany',
+      'api::disclosure.disclosure'
+    >;
+    description: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::disclosure-category.disclosure-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::disclosure-category.disclosure-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
   };
 }
 
@@ -1442,6 +1571,11 @@ export interface ApiPressReleasePressRelease extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    category: Attribute.Relation<
+      'api::press-release.press-release',
+      'manyToOne',
+      'api::press-release-category.press-release-category'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1463,6 +1597,46 @@ export interface ApiPressReleasePressRelease extends Schema.CollectionType {
       'api::press-release.press-release'
     >;
     locale: Attribute.String;
+  };
+}
+
+export interface ApiPressReleaseCategoryPressReleaseCategory
+  extends Schema.CollectionType {
+  collectionName: 'press_release_categories';
+  info: {
+    singularName: 'press-release-category';
+    pluralName: 'press-release-categories';
+    displayName: 'Press Release Category';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.String;
+    slug: Attribute.UID<
+      'api::press-release-category.press-release-category',
+      'name'
+    >;
+    press_releases: Attribute.Relation<
+      'api::press-release-category.press-release-category',
+      'oneToMany',
+      'api::press-release.press-release'
+    >;
+    description: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::press-release-category.press-release-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::press-release-category.press-release-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
   };
 }
 
@@ -1516,15 +1690,19 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::announcement.announcement': ApiAnnouncementAnnouncement;
+      'api::announcement-cagegory.announcement-cagegory': ApiAnnouncementCagegoryAnnouncementCagegory;
       'api::article.article': ApiArticleArticle;
       'api::author.author': ApiAuthorAuthor;
       'api::brochure.brochure': ApiBrochureBrochure;
+      'api::brochure-category.brochure-category': ApiBrochureCategoryBrochureCategory;
       'api::category.category': ApiCategoryCategory;
       'api::disclosure.disclosure': ApiDisclosureDisclosure;
+      'api::disclosure-category.disclosure-category': ApiDisclosureCategoryDisclosureCategory;
       'api::global.global': ApiGlobalGlobal;
       'api::lead-form-submission.lead-form-submission': ApiLeadFormSubmissionLeadFormSubmission;
       'api::page.page': ApiPagePage;
       'api::press-release.press-release': ApiPressReleasePressRelease;
+      'api::press-release-category.press-release-category': ApiPressReleaseCategoryPressReleaseCategory;
       'api::product-feature.product-feature': ApiProductFeatureProductFeature;
     }
   }

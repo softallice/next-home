@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "press_release_categories",
+  "info": {
+    "singularName": "press-release-category",
+    "pluralName": "press-release-categories",
+    "displayName": "Press Release Category"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "press_releases": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::press-release.press-release",
+      "mappedBy": "category"
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

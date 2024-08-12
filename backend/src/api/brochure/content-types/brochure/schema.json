@@ -85,6 +85,12 @@
           "localized": true
         }
       }
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::brochure-category.brochure-category",
+      "inversedBy": "brochures"
     }
   }
 }

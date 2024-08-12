@@ -68,6 +68,12 @@
           "localized": true
         }
       }
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::disclosure-category.disclosure-category",
+      "inversedBy": "disclosures"
     }
   }
 }

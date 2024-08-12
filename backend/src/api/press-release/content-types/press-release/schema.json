@@ -85,6 +85,12 @@
           "localized": true
         }
       }
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::press-release-category.press-release-category",
+      "inversedBy": "press_releases"
     }
   }
 }

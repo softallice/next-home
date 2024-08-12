@@ -68,6 +68,12 @@
           "localized": true
         }
       }
+    },
+    "cagegory": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::announcement-cagegory.announcement-cagegory",
+      "inversedBy": "announcements"
     }
   }
 }

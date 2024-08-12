@@ -1,3 +1,24 @@
+db 실행
+docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=ndshome -d -p 3306:3306 mysql:latest
+
+docker exec -it mysql-container mysql -u root -p
+
+CREATE DATABASE strapi;
+
+CREATE USER 'strapiuser'@'localhost' IDENTIFIED BY 'strapiuser';
+
+
+GRANT ALL PRIVILEGES ON strapi.* TO 'strapiuser'@'localhost';
+
+FLUSH PRIVILEGES;
+
+
+------------------------------
+ALTER USER 'strapiuser'@'localhost' IDENTIFIED WITH mysql_native_password BY 'strapiuser';
+FLUSH PRIVILEGES;
+--------------------
+exit
+
 # 🚀 Getting started with Strapi
 
 Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html) (CLI) which lets you scaffold and manage your project in seconds.

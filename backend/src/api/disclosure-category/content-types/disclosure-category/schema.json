@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "disclosure_categories",
+  "info": {
+    "singularName": "disclosure-category",
+    "pluralName": "disclosure-categories",
+    "displayName": "Disclosure Category"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "disclosures": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::disclosure.disclosure",
+      "mappedBy": "category"
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}
