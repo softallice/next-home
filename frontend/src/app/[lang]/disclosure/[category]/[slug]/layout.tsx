@@ -1,4 +1,4 @@
-import ArticleSelect from "@/components/custom/select/ArticleSelect";
+import DisclosureSelect from "@/components/custom/select/DisclosureSelect";
 import { fetchAPI } from "@/lib/fetch-api";
 
 async function fetchSideMenuData(filter: string) {
@@ -7,13 +7,13 @@ async function fetchSideMenuData(filter: string) {
     const options = { headers: { Authorization: `Bearer ${token}` } };
 
     const categoriesResponse = await fetchAPI(
-      "/categories",
+      "/disclosure-categories",
       { populate: "*" },
       options
     );
 
-    const articlesResponse = await fetchAPI(
-      "/articles",
+    const disclosuresResponse = await fetchAPI(
+      "/disclosures",
       filter
         ? {
             filters: {
@@ -27,7 +27,7 @@ async function fetchSideMenuData(filter: string) {
     );
 
     return {
-      articles: articlesResponse.data,
+      disclosures: disclosuresResponse.data,
       categories: categoriesResponse.data,
     };
   } catch (error) {
@@ -40,13 +40,13 @@ interface Category {
   attributes: {
     name: string;
     slug: string;
-    articles: {
+    disclosures: {
       data: Array<{}>;
     };
   };
 }
 
-interface Article {
+interface Disclosure {
   id: number;
   attributes: {
     title: string;
@@ -55,7 +55,7 @@ interface Article {
 }
 
 interface Data {
-  articles: Article[];
+  disclosures: Disclosure[];
   categories: Category[];
 }
 
@@ -70,16 +70,16 @@ export default async function LayoutRoute({
   };
 }) {
   const { category } = params;
-  const { categories, articles } = (await fetchSideMenuData(category)) as Data;
+  const { categories, disclosures } = (await fetchSideMenuData(category)) as Data;
 
   return (
     <section className="container p-8 mx-auto space-y-6 sm:space-y-12">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-2 lg:gap-4">
         <div className="col-span-2">{children}</div>
         <aside>
-          <ArticleSelect
+          <DisclosureSelect
             categories={categories}
-            articles={articles}
+            disclosures={disclosures}
             params={params}
           />
         </aside>
@@ -90,9 +90,9 @@ export default async function LayoutRoute({
 
 export async function generateStaticParams() {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-  const path = `/articles`;
+  const path = `/disclosures`;
   const options = { headers: { Authorization: `Bearer ${token}` } };
-  const articleResponse = await fetchAPI(
+  const disclosureResponse = await fetchAPI(
     path,
     {
       populate: ["category"],
@@ -100,14 +100,14 @@ export async function generateStaticParams() {
     options
   );
 
-  return articleResponse.data.map(
-    (article: {
+  return disclosureResponse.data.map(
+    (disclosure: {
       attributes: {
         slug: string;
         category: {
           slug: string;
         };
       };
-    }) => ({ slug: article.attributes.slug, category: article.attributes.slug })
+    }) => ({ slug: disclosure.attributes.slug, category: disclosure.attributes.slug })
   );
 }

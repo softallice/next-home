@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback } from "react";
 import { fetchAPI } from "@/lib/fetch-api";
 
 import Loader from "@/components/custom/Loader";
-import Brochure from "../views/brochure/brochure-list";
+import Disclosure from "../views/disclosure/disclosure-list";
 import PageHeader from "@/components/custom/PageHeader";
 
 interface Meta {
@@ -23,7 +23,7 @@ export default function Profile() {
     setLoading(true);
     try {
       const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-      const path = `/brochures`;
+      const path = `/disclosures`;
       const urlParamsObject = {
         sort: { createdAt: "desc" },
         populate: {
@@ -65,8 +65,8 @@ export default function Profile() {
 
   return (
     <div>
-      <PageHeader heading="브로슈어" text="브로슈어리스트" />
-      <Brochure data={data}>
+      <PageHeader heading="전자공시" text="전자공시" />
+      <Disclosure data={data}>
         {meta!.pagination.start + meta!.pagination.limit <
           meta!.pagination.total && (
           <div className="flex justify-center">
@@ -79,7 +79,7 @@ export default function Profile() {
             </button>
           </div>
         )}
-      </Brochure>
+      </Disclosure>
     </div>
   );
 }

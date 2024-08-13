@@ -28,6 +28,9 @@ const populate = {
           },
         },
       },
+      cover: {
+        fields: ["url", "alternativeText", "caption", "width", "height"],
+      },
       plans: {
         populate: ["product_features"],
       },

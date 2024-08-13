@@ -1,11 +1,29 @@
+import { formatDate, getStrapiMedia } from '@/lib/api-helpers';
 import Link from "next/link";
-
+import Image from 'next/image';
 interface FeaturesProps {
   data: {
     heading: string;
     description: string;
     feature: Feature[];
   };
+}
+
+interface MediaAttributes {
+  url: string; // 이미지의 URL 경로
+  alternativeText: string | null; // 대체 텍스트 또는 null
+  caption: string | null; // 캡션 또는 null
+  width: number; // 이미지의 너비
+  height: number; // 이미지의 높이
+}
+
+interface MediaData {
+  id: number; // 미디어의 고유 ID
+  attributes: MediaAttributes; // 미디어의 속성
+}
+
+interface Media {
+  data: MediaData; // 미디어 데이터
 }
 
 interface Feature {
@@ -16,23 +34,22 @@ interface Feature {
   newTab: boolean;
   url: string;
   text: string;
+  media: Media;
 }
 
-function Feature({ title, description, showLink, newTab, url, text }: Feature) {
+function Feature({ title, description, showLink, newTab, url, text, media }: Feature) {
+  const imageUrl = getStrapiMedia(media.data.attributes.url);
   return (
     <div className="flex flex-col items-center p-4">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-        className="w-8 h-8 dark:text-violet-400"
-      >
-        <path
-          fillRule="evenodd"
-          d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
-          clipRule="evenodd"
-        ></path>
-      </svg>
+      {imageUrl && (
+          <Image
+              src={imageUrl}
+              alt="article cover image"
+              width={200}
+              height={200}
+              className="h-48 object-fit rounded-lg"
+          />
+      )}
       <h3 className="my-3 text-3xl font-semibold">{title}</h3>
       <div className="space-y-1 leading-tight my-6">
         <p>{description}</p>

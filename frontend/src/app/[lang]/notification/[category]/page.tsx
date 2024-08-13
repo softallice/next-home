@@ -1,11 +1,11 @@
 import PageHeader from '@/components/custom/PageHeader';
 import { fetchAPI } from '@/lib/fetch-api';
-import BrochureList from '@/app/[lang]/views/brochure/brochure-list';
+import NotificationList from '@/app/[lang]/views/notification/notification-list';
 
 async function fetchPostsByCategory(filter: string) {
     try {
         const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-        const path = `/brochures`;
+        const path = `/notifications`;
         const urlParamsObject = {
             sort: { createdAt: 'desc' },
             filters: {
@@ -43,7 +43,7 @@ export default async function CategoryRoute({ params }: { params: { category: st
     return (
         <div>
             <PageHeader heading={name} text={description} />
-            <BrochureList data={data} />
+            <NotificationList data={data} />
         </div>
     );
 }

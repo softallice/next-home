@@ -1,4 +1,4 @@
-import BrochureSelect from "@/components/custom/BrochureSelect";
+import BrochureSelect from "@/components/custom/select/BrochureSelect";
 import { fetchAPI } from "@/lib/fetch-api";
 
 async function fetchSideMenuData(filter: string) {
@@ -90,7 +90,7 @@ export default async function LayoutRoute({
 
 export async function generateStaticParams() {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-  const path = `/articles`;
+  const path = `/brochures`;
   const options = { headers: { Authorization: `Bearer ${token}` } };
   const articleResponse = await fetchAPI(
     path,

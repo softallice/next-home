@@ -75,8 +75,6 @@ export default function Navbar({
   logoText: string | null;
 }) {
 
-  console.log('links : ', links)
-
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const closeMenu = () => {
     setMobileMenuOpen(false);

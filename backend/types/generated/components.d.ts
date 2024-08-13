@@ -342,6 +342,20 @@ export interface SectionsHero extends Schema.Component {
   };
 }
 
+export interface SectionsIntroImage extends Schema.Component {
+  collectionName: 'components_sections_intro_images';
+  info: {
+    displayName: 'Intro image';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Text;
+    cover: Attribute.Media;
+    slogan: Attribute.Text;
+  };
+}
+
 export interface SectionsLargeVideo extends Schema.Component {
   collectionName: 'components_slices_large_videos';
   info: {
@@ -530,6 +544,7 @@ declare module '@strapi/types' {
       'sections.features': SectionsFeatures;
       'sections.heading': SectionsHeading;
       'sections.hero': SectionsHero;
+      'sections.intro-image': SectionsIntroImage;
       'sections.large-video': SectionsLargeVideo;
       'sections.lead-form': SectionsLeadForm;
       'sections.pricing': SectionsPricing;

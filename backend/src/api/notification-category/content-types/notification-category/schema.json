@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "notification_categories",
+  "info": {
+    "singularName": "notification-category",
+    "pluralName": "notification-categories",
+    "displayName": "Notification Category"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "description": {
+      "type": "text"
+    },
+    "notifications": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::notification.notification",
+      "mappedBy": "category"
+    }
+  }
+}

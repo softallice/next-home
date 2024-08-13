@@ -788,127 +788,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface ApiAnnouncementAnnouncement extends Schema.CollectionType {
-  collectionName: 'announcements';
-  info: {
-    singularName: 'announcement';
-    pluralName: 'announcements';
-    displayName: 'Announcement';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    description: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    slug: Attribute.UID<'api::announcement.announcement', 'title'> &
-      Attribute.Required;
-    blocks: Attribute.DynamicZone<['shared.rich-text']> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    seo: Attribute.Component<'shared.seo'> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    applyDate: Attribute.Date &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    cagegory: Attribute.Relation<
-      'api::announcement.announcement',
-      'manyToOne',
-      'api::announcement-cagegory.announcement-cagegory'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::announcement.announcement',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::announcement.announcement',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    localizations: Attribute.Relation<
-      'api::announcement.announcement',
-      'oneToMany',
-      'api::announcement.announcement'
-    >;
-    locale: Attribute.String;
-  };
-}
-
-export interface ApiAnnouncementCagegoryAnnouncementCagegory
-  extends Schema.CollectionType {
-  collectionName: 'announcement_cagegories';
-  info: {
-    singularName: 'announcement-cagegory';
-    pluralName: 'announcement-cagegories';
-    displayName: 'Announcement Cagegory';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    name: Attribute.String;
-    slug: Attribute.UID<
-      'api::announcement-cagegory.announcement-cagegory',
-      'name'
-    >;
-    announcements: Attribute.Relation<
-      'api::announcement-cagegory.announcement-cagegory',
-      'oneToMany',
-      'api::announcement.announcement'
-    >;
-    description: Attribute.Text;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::announcement-cagegory.announcement-cagegory',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::announcement-cagegory.announcement-cagegory',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiArticleArticle extends Schema.CollectionType {
   collectionName: 'articles';
   info: {
@@ -1259,6 +1138,18 @@ export interface ApiDisclosureDisclosure extends Schema.CollectionType {
       'manyToOne',
       'api::disclosure-category.disclosure-category'
     >;
+    cover: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    file: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1427,6 +1318,133 @@ export interface ApiLeadFormSubmissionLeadFormSubmission
   };
 }
 
+export interface ApiNotificationNotification extends Schema.CollectionType {
+  collectionName: 'notifications';
+  info: {
+    singularName: 'notification';
+    pluralName: 'notifications';
+    displayName: 'Notification';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    title: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    description: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    slug: Attribute.UID<'api::notification.notification', 'title'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    cover: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    applyDate: Attribute.Date &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    blocks: Attribute.DynamicZone<['shared.rich-text']> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    seo: Attribute.Component<'shared.seo'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    category: Attribute.Relation<
+      'api::notification.notification',
+      'manyToOne',
+      'api::notification-category.notification-category'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::notification.notification',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::notification.notification',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::notification.notification',
+      'oneToMany',
+      'api::notification.notification'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiNotificationCategoryNotificationCategory
+  extends Schema.CollectionType {
+  collectionName: 'notification_categories';
+  info: {
+    singularName: 'notification-category';
+    pluralName: 'notification-categories';
+    displayName: 'Notification Category';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.String;
+    slug: Attribute.UID<
+      'api::notification-category.notification-category',
+      'name'
+    >;
+    description: Attribute.Text;
+    notifications: Attribute.Relation<
+      'api::notification-category.notification-category',
+      'oneToMany',
+      'api::notification.notification'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::notification-category.notification-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::notification-category.notification-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPagePage extends Schema.CollectionType {
   collectionName: 'pages';
   info: {
@@ -1463,7 +1481,8 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.pricing',
         'sections.lead-form',
         'sections.features',
-        'sections.heading'
+        'sections.heading',
+        'sections.intro-image'
       ]
     > &
       Attribute.SetPluginOptions<{
@@ -1689,8 +1708,6 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'api::announcement.announcement': ApiAnnouncementAnnouncement;
-      'api::announcement-cagegory.announcement-cagegory': ApiAnnouncementCagegoryAnnouncementCagegory;
       'api::article.article': ApiArticleArticle;
       'api::author.author': ApiAuthorAuthor;
       'api::brochure.brochure': ApiBrochureBrochure;
@@ -1700,6 +1717,8 @@ declare module '@strapi/types' {
       'api::disclosure-category.disclosure-category': ApiDisclosureCategoryDisclosureCategory;
       'api::global.global': ApiGlobalGlobal;
       'api::lead-form-submission.lead-form-submission': ApiLeadFormSubmissionLeadFormSubmission;
+      'api::notification.notification': ApiNotificationNotification;
+      'api::notification-category.notification-category': ApiNotificationCategoryNotificationCategory;
       'api::page.page': ApiPagePage;
       'api::press-release.press-release': ApiPressReleasePressRelease;
       'api::press-release-category.press-release-category': ApiPressReleaseCategoryPressReleaseCategory;
