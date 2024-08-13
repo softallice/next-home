@@ -13,6 +13,9 @@ const populate = {
       buttons: {
         populate: true,
       },
+      timelines: {
+        populate: true,
+      },
       feature: {
         populate: {
           fields: ["title", "description", "showLink", "newTab", "url", "text"],

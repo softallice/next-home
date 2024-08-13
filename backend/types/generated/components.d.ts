@@ -128,6 +128,18 @@ export interface ElementsTestimonial extends Schema.Component {
   };
 }
 
+export interface ElementsTimeline extends Schema.Component {
+  collectionName: 'components_elements_timelines';
+  info: {
+    displayName: 'Timeline';
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Text;
+    date: Attribute.String;
+  };
+}
+
 export interface LayoutFooter extends Schema.Component {
   collectionName: 'components_layout_footers';
   info: {
@@ -342,6 +354,19 @@ export interface SectionsHero extends Schema.Component {
   };
 }
 
+export interface SectionsHistory extends Schema.Component {
+  collectionName: 'components_sections_histories';
+  info: {
+    displayName: 'History';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Text;
+    timelines: Attribute.Component<'elements.timeline', true>;
+  };
+}
+
 export interface SectionsIntroImage extends Schema.Component {
   collectionName: 'components_sections_intro_images';
   info: {
@@ -529,6 +554,7 @@ declare module '@strapi/types' {
       'elements.notification-banner': ElementsNotificationBanner;
       'elements.plan': ElementsPlan;
       'elements.testimonial': ElementsTestimonial;
+      'elements.timeline': ElementsTimeline;
       'layout.footer': LayoutFooter;
       'layout.logo': LayoutLogo;
       'layout.navbar': LayoutNavbar;
@@ -544,6 +570,7 @@ declare module '@strapi/types' {
       'sections.features': SectionsFeatures;
       'sections.heading': SectionsHeading;
       'sections.hero': SectionsHero;
+      'sections.history': SectionsHistory;
       'sections.intro-image': SectionsIntroImage;
       'sections.large-video': SectionsLargeVideo;
       'sections.lead-form': SectionsLeadForm;

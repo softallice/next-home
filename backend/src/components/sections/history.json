@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_sections_histories",
+  "info": {
+    "displayName": "History",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "timelines": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.timeline"
+    }
+  }
+}

@@ -39,7 +39,8 @@
         "sections.lead-form",
         "sections.features",
         "sections.heading",
-        "sections.intro-image"
+        "sections.intro-image",
+        "sections.history"
       ],
       "pluginOptions": {
         "i18n": {

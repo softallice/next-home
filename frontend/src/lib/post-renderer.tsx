@@ -1,4 +1,4 @@
-import RichText from "@/components/custom/RichText";
+import RichText from "@/components/custom/section/RichText";
 import ImageSlider from "@/components/custom/ImageSlider";
 import Quote from "@/components/custom/Quote";
 import Media from "@/components/custom/Media";

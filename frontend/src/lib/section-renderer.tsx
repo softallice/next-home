@@ -1,11 +1,12 @@
-import Hero from "@/components/custom/Hero";
+import Hero from "@/components/custom/section/Hero";
 import Features from "@/components/custom/Features";
 import Testimonials from "@/components/custom/Testimonials";
-import Pricing from "@/components/custom/Pricing";
-import Email from "@/components/custom/Email";
-import RichText from "@/components/custom/RichText";
-import PageHeader from "@/components/custom/PageHeader";
-import IntroImage from "@/components/custom/IntroImage";
+import Pricing from "@/components/custom/section/Pricing";
+import Email from "@/components/custom/section/Email";
+import RichText from "@/components/custom/section/RichTextContent";
+import PageHeader from "@/components/custom/section/PageHeader";
+import IntroImage from "@/components/custom/section/IntroImage";
+import History from "@/components/custom/section/History";
 
 export function sectionRenderer(section: any, index: number) {
   // console.log('section : ', section)
@@ -22,8 +23,12 @@ export function sectionRenderer(section: any, index: number) {
       return <Email key={index} data={section} />;
     case "sections.rich-text":
       return <RichText key={index} data={section} />;
+    case "sections.intro-image":
+      return <IntroImage key={index} data={section} />;
     case "sections.heading":
-      return <PageHeader key={index} heading={section.heading} text={section.description} />;
+      return <PageHeader key={index} data={section} />;
+    case "sections.history":
+      return <History key={index} data={section} />;
     default:
       return null;
   }
