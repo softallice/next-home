@@ -18,7 +18,7 @@ export interface ElementsFeatureColumn extends Schema.Component {
 export interface ElementsFeatureRow extends Schema.Component {
   collectionName: 'components_slices_feature_rows';
   info: {
-    name: 'FeatureRow';
+    name: 'featureRow';
     displayName: 'Feature row';
     icon: 'arrows-alt-h';
     description: '';

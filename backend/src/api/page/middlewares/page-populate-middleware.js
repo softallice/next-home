@@ -16,6 +16,14 @@ const populate = {
       timelines: {
         populate: true,
       },
+      features: {
+        populate: {
+          fields: ["title", "description", "showLink", "newTab", "url", "text"],
+          media: {
+            fields: ["url", "alternativeText", "caption", "width", "height"],
+          },
+        },
+      },
       feature: {
         populate: {
           fields: ["title", "description", "showLink", "newTab", "url", "text"],

@@ -9,6 +9,14 @@ import Footer from "../../components/custom/Footer";
 import Navbar from "../../components/header/Navbar";
 import {FALLBACK_SEO} from "@/lib/constants";
 
+import { Noto_Sans_KR } from "next/font/google";
+
+// Noto Sans KR 폰트 구글 폰트 설정
+const notoSansKr = Noto_Sans_KR({
+  subsets: ["latin"],
+  display: "swap",
+  // weight: ["100", "400", "700", "900"], // 가변 폰트가 아닌 경우, 사용할 fontWeight 배열
+});
 
 async function getGlobal(lang: string): Promise<any> {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
@@ -77,7 +85,7 @@ export default async function RootLayout({
 
   return (
     <html lang={params.lang}>
-      <body>
+      <body className={notoSansKr.className} suppressHydrationWarning>
         <Navbar
           links={navbar.links}
           logoUrl={navbarLogoUrl}

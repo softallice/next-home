@@ -7,9 +7,10 @@ import RichText from "@/components/custom/section/RichTextContent";
 import PageHeader from "@/components/custom/section/PageHeader";
 import IntroImage from "@/components/custom/section/IntroImage";
 import History from "@/components/custom/section/History";
+import FeaturesRowGroup from "@/components/custom/section/FeaturesRowGroup";
 
 export function sectionRenderer(section: any, index: number) {
-  // console.log('section : ', section)
+  console.log('section : ', section)
   switch (section.__component) {
     case "sections.hero":
       return <Hero key={index} data={section} />;
@@ -29,6 +30,8 @@ export function sectionRenderer(section: any, index: number) {
       return <PageHeader key={index} data={section} />;
     case "sections.history":
       return <History key={index} data={section} />;
+    case "sections.feature-rows-group":
+      return <FeaturesRowGroup key={index} data={section} />;
     default:
       return null;
   }
