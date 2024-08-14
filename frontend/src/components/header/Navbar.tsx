@@ -121,6 +121,13 @@ export default function Navbar({
   return (
     <div className="dark:bg-black dark:text-gray-100">
       <header className='fixed w-full z-[100] drop-shadow-sm' style={headerStyle}>
+      <motion.nav
+        variants={variants}
+        animate={top !== 0 ? "hidden" : "visible"}
+        transition={{ ease: [0.1, 0.25, 0.3, 1], duration: 0.6 }}
+        className='w-full'
+        // style={navStyle}
+      >
         <div className="container flex justify-between h-16 px-0 mx-auto sm:px-6">
           <Logo src={logoUrl}>
             {logoText && <h2 className="text-2xl font-bold">{logoText}</h2>}
@@ -175,6 +182,7 @@ export default function Navbar({
             <Bars3Icon className="text-gray-100 h-7 w-7" aria-hidden="true" />
           </button>
         </div>
+      </motion.nav>
       </header>
     </div>
   );

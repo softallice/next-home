@@ -87,7 +87,7 @@ export default async function RootLayout({
   );
 
   return (
-    <html lang={params.lang}>
+    <html lang={params.lang} suppressHydrationWarning>
       <body className={notoSansKr.className} suppressHydrationWarning>
         <SmoothScrolling>
           <Navbar
