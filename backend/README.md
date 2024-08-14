@@ -13,6 +13,18 @@ GRANT ALL PRIVILEGES ON strapi.* TO 'strapiuser'@'localhost';
 FLUSH PRIVILEGES;
 
 
+
+
+
+cd apps/strapi
+cp .env.example .env
+echo "APP_KEYS="`openssl rand 16 | base64`","`openssl rand 16 | base64`","`openssl rand 16 | base64`","`openssl rand 16 | base64` >> .env
+echo "API_TOKEN_SALT="`openssl rand 16 | base64` >> .env
+echo "ADMIN_JWT_SECRET="`openssl rand 16 | base64` >> .env
+echo "TRANSFER_TOKEN_SALT="`openssl rand 16 | base64` >> .env
+echo "JWT_SECRET="`openssl rand 16 | base64` >> .env
+
+
 ------------------------------
 ALTER USER 'strapiuser'@'localhost' IDENTIFIED WITH mysql_native_password BY 'strapiuser';
 FLUSH PRIVILEGES;

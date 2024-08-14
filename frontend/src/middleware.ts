@@ -13,7 +13,6 @@ function getLocale(request: NextRequest): string | undefined {
 
     // Use negotiator and intl-localematcher to get best locale
     let languages = new Negotiator({ headers: negotiatorHeaders }).languages();
-    console.log('languages : ', languages)
     // @ts-ignore locales are readonly
     const locales: string[] = i18n.locales;
     return matchLocale(languages, locales, i18n.defaultLocale);  
@@ -43,6 +42,11 @@ export function middleware(request: NextRequest) {
 
         console.log('pathnameIsMissingLocale : ', pathnameIsMissingLocale)
         const locale = getLocale(request);
+
+         // 로케일이 'kr'인 경우, 경로에 로케일을 추가하지 않음
+        // if (locale === 'kr') {
+        //     return NextResponse.rewrite(new URL(pathname, request.url));
+        // }
 
         // e.g. incoming request is /products
         // The new URL is now /en-US/products

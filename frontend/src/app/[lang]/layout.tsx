@@ -11,6 +11,9 @@ import {FALLBACK_SEO} from "@/lib/constants";
 
 import { Noto_Sans_KR } from "next/font/google";
 
+import SmoothScrolling from "@/components/custom/gsap/SmoothScrolling";
+import ScrollToTop from "@/components/custom/scroll/ScrollToTop";
+
 // Noto Sans KR 폰트 구글 폰트 설정
 const notoSansKr = Noto_Sans_KR({
   subsets: ["latin"],
@@ -86,26 +89,29 @@ export default async function RootLayout({
   return (
     <html lang={params.lang}>
       <body className={notoSansKr.className} suppressHydrationWarning>
-        <Navbar
-          links={navbar.links}
-          logoUrl={navbarLogoUrl}
-          logoText={navbar.navbarLogo.logoText}
-        />
+        <SmoothScrolling>
+          <Navbar
+            links={navbar.links}
+            logoUrl={navbarLogoUrl}
+            logoText={navbar.navbarLogo.logoText}
+          />
 
-        <main className="min-h-screen dark:bg-black dark:text-gray-100">
-          {children}
-        </main>
+          <main className="min-h-screen dark:bg-black dark:text-gray-100">
+            {children}
+          </main>
 
-        {/* <Banner data={notificationBanner} /> */}
+          {/* <Banner data={notificationBanner} /> */}
+          <ScrollToTop/>
 
-        <Footer
-          logoUrl={footerLogoUrl}
-          logoText={footer.footerLogo.logoText}
-          menuLinks={footer.menuLinks}
-          categoryLinks={footer.categories.data}
-          legalLinks={footer.legalLinks}
-          socialLinks={footer.socialLinks}
-        />
+          <Footer
+            logoUrl={footerLogoUrl}
+            logoText={footer.footerLogo.logoText}
+            menuLinks={footer.menuLinks}
+            categoryLinks={footer.categories.data}
+            legalLinks={footer.legalLinks}
+            socialLinks={footer.socialLinks}
+          />
+        </SmoothScrolling>
       </body>
     </html>
   );

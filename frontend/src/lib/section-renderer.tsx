@@ -10,7 +10,7 @@ import History from "@/components/custom/section/History";
 import FeaturesRowGroup from "@/components/custom/section/FeaturesRowGroup";
 
 export function sectionRenderer(section: any, index: number) {
-  console.log('section : ', section)
+  // console.log('section : ', section)
   switch (section.__component) {
     case "sections.hero":
       return <Hero key={index} data={section} />;
