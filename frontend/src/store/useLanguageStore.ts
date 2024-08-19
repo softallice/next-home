@@ -8,5 +8,7 @@ interface LanguageState {
 
 export const useLanguageStore = create<LanguageState>((set) => ({
   locale: 'ko', // 기본 언어
-  setLocale: (locale) => set({ locale }),
+  setLocale: (locale) => {set({ locale }),
+    document.cookie = `NEXT_LOCALE=${locale}; path=/`;
+  }
 }));

@@ -13,7 +13,7 @@ import { Noto_Sans_KR } from "next/font/google";
 import SmoothScrolling from "@/components/custom/gsap/SmoothScrolling";
 import ScrollToTop from "@/components/custom/scroll/ScrollToTop";
 
-import { LanguageProvider } from "@/components/language/LanguageProvider";
+// import { LanguageProvider } from "@/components/language/LanguageProvider";
 import LanguageSwitcher from "@/components/language/LanguageSwitcher";
 
 const notoSansKr = Noto_Sans_KR({
@@ -82,33 +82,31 @@ export default async function RootLayout({
   return (
     <html lang={params.lang} suppressHydrationWarning>
       <body className={notoSansKr.className} suppressHydrationWarning>
-        {/* <LanguageProvider initialLang={params.lang}> */}
-          <SmoothScrolling>
-            <Navbar
-              links={navbar.links}
-              logoUrl={navbarLogoUrl}
-              logoText={navbar.navbarLogo.logoText}
-            >
-              {/* 서버에서 가져온 초기 언어 정보를 클라이언트 컴포넌트로 전달 */}
-              <LanguageSwitcher initialLocale={params.lang} />
-            </Navbar>
+        <SmoothScrolling>
+          <Navbar
+            links={navbar.links}
+            logoUrl={navbarLogoUrl}
+            logoText={navbar.navbarLogo.logoText}
+          >
+            {/* 서버에서 가져온 초기 언어 정보를 클라이언트 컴포넌트로 전달 */}
+            <LanguageSwitcher initialLocale={params.lang} />
+          </Navbar>
 
-            <main className="min-h-screen dark:bg-black dark:text-gray-100">
-              {children}
-            </main>
+          <main className="min-h-screen dark:bg-black dark:text-gray-100">
+            {children}
+          </main>
 
-            <ScrollToTop />
+          <ScrollToTop />
 
-            <Footer
-              logoUrl={footerLogoUrl}
-              logoText={footer.footerLogo.logoText}
-              menuLinks={footer.menuLinks}
-              categoryLinks={footer.categories.data}
-              legalLinks={footer.legalLinks}
-              socialLinks={footer.socialLinks}
-            />
-          </SmoothScrolling>
-        {/* </LanguageProvider> */}
+          <Footer
+            logoUrl={footerLogoUrl}
+            logoText={footer.footerLogo.logoText}
+            menuLinks={footer.menuLinks}
+            categoryLinks={footer.categories.data}
+            legalLinks={footer.legalLinks}
+            socialLinks={footer.socialLinks}
+          />
+        </SmoothScrolling>
       </body>
     </html>
   );

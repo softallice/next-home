@@ -15,6 +15,7 @@ function getLocale(request: NextRequest): string | undefined {
 
     // Use the locale from the cookies if it exists
     const cookieLocale = request.cookies.get('NEXT_LOCALE')?.value;
+    console.log('cookieLocale : ', cookieLocale)
     if (cookieLocale && locales.includes(cookieLocale)) {
         return cookieLocale;
     }
