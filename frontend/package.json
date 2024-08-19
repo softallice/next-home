@@ -14,6 +14,7 @@
     "@headlessui/react": "^2.1.2",
     "@heroicons/react": "^2.1.5",
     "@radix-ui/react-navigation-menu": "^1.2.0",
+    "@radix-ui/react-select": "^2.1.1",
     "@radix-ui/react-slot": "^1.1.0",
     "@strapi/provider-upload-aws-s3": "^4.25.7",
     "@studio-freight/lenis": "^1.0.42",
@@ -38,7 +39,8 @@
     "remark-gfm": "^4.0.0",
     "swiper": "^11.1.9",
     "tailwind-merge": "^2.4.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zustand": "^4.5.5"
   },
   "devDependencies": {
     "@types/gsap": "^3.0.0",
