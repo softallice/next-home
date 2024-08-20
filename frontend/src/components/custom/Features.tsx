@@ -38,7 +38,7 @@ interface Feature {
 }
 
 function Feature({ title, description, showLink, newTab, url, text, media }: Feature) {
-  const imageUrl = getStrapiMedia(media.data.attributes.url);
+  const imageUrl = getStrapiMedia(media.data?.attributes.url);
   return (
     <div className="flex flex-col items-center p-4">
       {imageUrl && (

@@ -1,3 +1,4 @@
+"use client"
 interface Feature {
   id: string;
   attributes: {
@@ -25,13 +26,24 @@ interface PriceProps {
   };
 }
 
+import HighlightText from "../text/HighlightText";
+import HighlightTextShow from "../text/HighlightTextShow";
+import HighlightTextPen from "../text/HighlightTextPen";
+import HighlightTextLine from "../text/HighlightTextLine";
+
 export default function Pricing({ data }: PriceProps) {
   return (
     <section className="py-20 dark:bg-black dark:text-gray-100 m:py-12 lg:py-24">
       <div className="container px-4 mx-auto ">
         <div className="max-w-2xl mx-auto mb-16 text-center">
           <span className="font-bold tracking-wider uppercase dark:text-violet-400">
-            Pricing
+            <HighlightTextShow title="변화하는 텍스트"/>
+          </span>
+          <span className="font-bold tracking-wider uppercase dark:text-violet-400">
+            <HighlightTextPen title="변화하는 텍스트"/>
+          </span>
+          <span className="font-bold tracking-wider uppercase dark:text-violet-400">
+            <HighlightTextLine title="변화하는 텍스트"/>
           </span>
           <h2 className="text-4xl font-bold lg:text-5xl">{data.title}</h2>
         </div>
